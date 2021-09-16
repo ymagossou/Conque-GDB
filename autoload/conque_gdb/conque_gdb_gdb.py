@@ -8,10 +8,10 @@ def exit_handler(event):
 
 def prompt_hook(prompt):
     print('\x1a\x18')
-    gdb.execute('interp mi "-break-list"')
+    gdb.execute('interpreter-exec mi3 "-break-list"')
     print('\x1a\x18')
 
 gdb.events.exited.connect(exit_handler)
-gdb.prompt_hook = prompt_hook
+#gdb.prompt_hook = prompt_hook
 
 gdb.execute('source ' + os.path.dirname(os.path.abspath(__file__)) + '/conque_gdb.gdb', False, True)
